@@ -31,8 +31,7 @@ _Have pip installed to the latest version_
 That's it!
 
 #### Bugs
-* Commenting system does not work
-* Following sends request but the response is not yet configured
+* No known bugs
 
 #### Technologies Used
 * Python (version 3.6)
