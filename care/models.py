@@ -32,12 +32,16 @@ class Patient(models.Model):
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     phone_number = models.IntegerField(null=True)
-    email = models.EmailField(blank=True)
+    email = models.EmailField(blank=True, null=True)
     injury = models.CharField(max_length=30, blank=True)
     INJURY_TYPES = (
     ('green','SAFE'),
     ('yellow','MINIMAL INJURY'),
     ('red','SEVERE INJURY'),
-    ('black','PASSED'),
+    ('black','DECEASED'),
 )
-    admitted = models.BooleanField(blank=True)
+    status = models.CharField(max_length=30, choices=INJURY_TYPES, blank=True)
+    admitted = models.NullBooleanField(blank=True)
+
+    def __str__(self):
+        return self.first_name
