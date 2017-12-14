@@ -19,10 +19,17 @@
 <body>
     {% include 'sidebar.html' %}
 
-    {% block content %}
-
-    {% endblock %}
-
+    <div id="page-content-wrapper">
+        <button type="button" class="hamburger is-closed" data-toggle="offcanvas">
+            <span class="hamb-top"></span>
+            <span class="hamb-middle"></span>
+            <span class="hamb-bottom"></span>
+        </button>
+        {% block content %}
+        
+        {% endblock %}
+    </div>
+            
     {% block scripts %}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         {% bootstrap_javascript %}
