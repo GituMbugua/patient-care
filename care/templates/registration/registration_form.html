@@ -1,4 +1,4 @@
-{%extends "auth/base.html"%}
+{%extends "registration/base.html"%}
 {% load bootstrap3 %}
 
 {% block content %}
@@ -8,28 +8,27 @@
     <div class="col-md-3 col-lg-3"></div>
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
       {% if form.errors %}
-        <p> Password or Username is incorrect </p>
+        <p> Some Information Might be Incorrect </p>
       {% endif %}
       <div class="panel panel-default panel-auth">
 
         <div class="panel-heading panel-auth">
-          <h3 class="text-center">Sign In</h3>
+          <h3 class="text-center">Register</h3>
         </div>
         <div class="panel-body">
 
-          <form  action="/accounts/login/" method="post">
+          <form  action="/accounts/register/" method="post">
             {% csrf_token %}
             {% bootstrap_form form %}
-
             <div class="form-group">
-              <input type="submit" class="btn btn-primary btn-sm" value="Login">
+              <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
             </div>
 
             <input type="hidden" name="next" value="{{next}}">
 
           </form>
 
-          <em class="auth-redir">Don't have an account? <a href="/accounts/register/">Register here</a></em>
+          <em class="auth-redir">Already have an account? <a href="/accounts/login/">Login here</a></em>
         </div>
       </div>
 
