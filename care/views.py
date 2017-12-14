@@ -10,8 +10,18 @@ from .forms import PatientForm
 def home(request):
     patients = Patient.objects.all().order_by('status')
 
+    if request.method == 'POST':
+        form = PatientForm(request.POST, files=request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, ('Your patient has been added.'))
+            
+            return redirect(home)
+    else:
+        form = PatientForm()
+
     title = 'Patient Care'
-    return render(request, 'home.html', {"title":title, "patients":patients})
+    return render(request, 'home.html', {"title":title, "patients":patients, "form":form})
 
 @login_required(login_url='/accounts/login/')
 def add_patient(request):
