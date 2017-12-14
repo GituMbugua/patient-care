@@ -10,6 +10,7 @@ django-six==1.0.4
 gunicorn==19.7.1
 olefile==0.44
 Pillow==4.3.0
+pkg-resources==0.0.0
 psycopg2==2.7.3.2
 python-decouple==3.1
 pytz==2017.3
