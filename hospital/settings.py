@@ -65,7 +65,13 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'django.template.context_processors.media',
+                # 'care.templatetags.load_setting',
             ],
+
+            # 'libraries':{
+            # 'app_filters': 'care.templatetags.app_filters',
+
+            # }
         },
     },
 ]
