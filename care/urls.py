@@ -5,7 +5,6 @@ from . import views
 
 urlpatterns = [
     url('^$', views.home, name = 'home'),
-    url(r'^add_patient/$', views.add_patient, name='add_patient'),
     url(r'^patient/(\d+)/$', views.patient, name='patient'),
 ]
 
