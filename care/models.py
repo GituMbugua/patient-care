@@ -28,9 +28,15 @@ class Profile(models.Model):
         return self.user.username
 
 class Patient(models.Model):
-    identifier = models.UUIDField(default=uuid.uuid4, editable=False)
+    identifier = models.UUIDField(max_length=8, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
+    dob = models.DateField(null=True)
+    GENDER_CHOICES = (
+        ('M', 'Male'),
+        ('F', 'Female'),
+    )
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, null=True)
     phone_number = models.IntegerField(null=True)
     email = models.EmailField(blank=True, null=True)
     injury = models.CharField(max_length=30, blank=True)
@@ -40,8 +46,13 @@ class Patient(models.Model):
     ('red','SEVERE INJURY'),
     ('black','DECEASED'),
 )
+    blood_type = models.CharField(max_length=5, blank=True)
+    weight = models.PositiveIntegerField(null=True)
+    height = models.PositiveIntegerField(null=True)
+    occupation = models.CharField(max_length=30, blank=True)
     status = models.CharField(max_length=30, choices=INJURY_TYPES, blank=True)
-    admitted = models.NullBooleanField(blank=True)
+    date_admitted = models.DateTimeField(auto_now_add=True)
+    notes = models.TextField(blank=True)
 
     def __str__(self):
         return self.first_name
