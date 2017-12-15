@@ -34,14 +34,14 @@ def patient(request, id):
     patient = Patient.objects.get(id=id)
 
     if request.method == 'POST':
-        form = UpdateInfoForm(request.POST)
+        form = UpdateInfoForm(request.POST, instance=patient)
         if form.is_valid():
             form.save()
             messages.success(request, ('You have successfully updated the patient information.'))
             
             return redirect(home)
     else:
-        form = UpdateInfoForm()
+        form = UpdateInfoForm(instance=patient)
 
     if patient.first_name:
         title = f"{patient.first_name} Records"
@@ -56,6 +56,16 @@ def profile(request, id):
     user = User.objects.get(id=id)
     profile = Profile.objects.get(user=user)
 
+    if request.method == 'POST':
+        form = UpdateInfoForm(request.POST, instance=request.user.profile)
+        if form.is_valid():
+            form.save()
+            messages.success(request, ('You have successfully updated the patient information.'))
+            
+            return redirect(home)
+    else:
+        form = UpdateInfoForm(instance=request.user.profile)
+
     title = f'{user.first_name} profile'
-    return render(request, 'profile.html', {"title":title, "profile":profile})
+    return render(request, 'profile.html', {"title":title, "profile":profile, "form":form})
 

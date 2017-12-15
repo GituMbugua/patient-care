@@ -6,11 +6,14 @@
 {% block content %}
 <div class="container-fluid home-container">
     <h1>Patients</h1> <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><i class="fa fa-user-plus"></i></button>
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
 </div>
 <div class="container table-container">
     <table class="table">
         <thead>
-            <tr>
+            <tr class="table-home-row">
                 <th id="identifier">Patient ID</th>
                 <th>Firstname</th>
                 <th>Lastname</th>
@@ -25,7 +28,7 @@
                 class="warning"
                 {% elif patient.status == 'red' %}
                 class="danger"
-                {% endif %}>
+                {% endif %} class="table-rows">
                 
                 <a href="{% url 'patient' patient.id %}"><th>{{patient.identifier}}</th></a>
                 <th>{{patient.first_name}}</th>
@@ -68,7 +71,8 @@
                 {% bootstrap_form form%}
     
                 <div class="form-group">
-                  <input type="submit" class="btn btn-primary btn-sm" value="Add">
+                  <input type="submit" class="btn btn-primary btn-md" value="Add">
+                  <button type="button" class="btn btn-default" style="float:right" data-dismiss="modal">Close</button>
                 </div>
     
                 <input type="hidden" name="next" value="{{next}}">
@@ -80,9 +84,9 @@
     
         </div>
       </div>
-      <div class="modal-footer">
+      <!-- <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
+      </div> -->
     </div>
 
   </div>
