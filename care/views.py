@@ -8,6 +8,9 @@ from .forms import PatientForm, UpdateInfoForm
 
 @login_required(login_url='/accounts/login/')
 def home(request):
+    '''
+    home view function that display all patients and the form to add a patient
+    '''
     patients = Patient.objects.all().order_by('status')
 
     if request.method == 'POST':
@@ -25,6 +28,9 @@ def home(request):
 
 @login_required(login_url='/accounts/login/')
 def patient(request, id):
+    '''
+    view function to display patient details and the form to update patient info
+    '''
     patient = Patient.objects.get(id=id)
 
     if request.method == 'POST':
@@ -43,5 +49,13 @@ def patient(request, id):
     
     return render(request, 'patient.html', {"title":title, "patient":patient, "form":form})
 
-def update_info(request, id):
-    pass
+def profile(request, id):
+    '''
+    view function that displays the user profile
+    '''
+    user = User.objects.get(id=id)
+    profile = Profile.objects.get(user=user)
+
+    title = f'{user.first_name} profile'
+    return render(request, 'profile.html', {"title":title, "profile":profile})
+
