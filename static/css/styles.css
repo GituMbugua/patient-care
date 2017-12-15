@@ -1,6 +1,7 @@
 body {
     position: relative;
     overflow-x: hidden;
+    background-color: rgb(243, 242, 255);
 }
 body,
 html { height: 100%;}
@@ -49,7 +50,9 @@ html { height: 100%;}
 }
 
 #page-content-wrapper {
+    height: 100%;
     width: 100%;
+    background-color: rgb(243, 242, 255);
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -299,6 +302,7 @@ html { height: 100%;}
 /* home page */
 html {
     height: 100vh;
+    width: 100%;
 }
 body {
     height: 100%;
@@ -315,6 +319,13 @@ body {
     padding-top: 70px;
     padding-bottom: 20px;
 }
+.home-container .first-name {
+    display: inline;
+}
+.home-container .last-name {
+    display: inline;
+    margin-left: 1%;
+}
 .home-container h1 {
     display: inline;
 }
@@ -330,9 +341,6 @@ body {
 }
 
 /* patient info */
-.patient-info .panel-header h2 {
-
-}
 @media only screen 
 and (min-device-width: 320px) 
 and (max-device-width: 480px)
@@ -343,4 +351,41 @@ and (-webkit-min-device-pixel-ratio: 2) {
     .home-container {
         width: 100%;
     }
+}
+table {
+    margin-top: 2%;
+}
+.table-home-row {
+    font-size: 18px;
+}
+.table-rows {
+    font-size: lighter;
+}
+.panel {
+    margin-top: 3%;
+}
+.panel-heading i {
+    font-size: 30px;
+}
+.panel-heading h2 {
+    display: inline;
+    font-weight: bold;
+    margin-left: 1%;
+}
+.panel-body h4 {
+    display: inline-block;
+    background-color: rgb(248, 247, 247);
+    padding: 2%;
+    width: 100%;
+    border-radius: 7px;
+}
+/* profile page  */
+.profile-info img {
+    display: inline;
+}
+.profile-username h1 {
+    display: inline;
+}
+.profile-username {
+    margin: 2%;
 }
