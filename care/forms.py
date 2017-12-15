@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import extras
-from .models import Profile, Department, Patient
+from .models import Profile, Patient
 
 class PatientForm(forms.ModelForm):
     class Meta:

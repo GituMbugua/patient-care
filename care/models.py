@@ -4,14 +4,10 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 import uuid
 
-class Department(models.Model):
-    name = models.CharField(max_length=50, blank=True)
-    deals_with = models.TextField(blank=True)
     
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    profile_pic = models.ImageField(upload_to='profile_pic/', null=True)
-    department = models.ForeignKey(Department, on_delete=models.CASCADE, null=True)    
+    profile_pic = models.ImageField(upload_to='profile/', default='/media/profile/user.svg', null=True)
     
     # link to in-built user model
     @receiver(post_save,sender = User)
@@ -27,6 +23,19 @@ class Profile(models.Model):
     def __str__(self):
         return self.user.username
 
+class Cause(models.Model):
+    name = models.CharField(max_length=30, blank=True)
+
+    def __str__(self):
+        return self.name
+
+class Physician(models.Model):
+    specialty = models.CharField(max_length=50, blank=True)
+    deals_with = models.ManyToManyField(Cause, blank=True)
+
+    def __str__(self):
+        return self.name
+    
 class Patient(models.Model):
     identifier = models.UUIDField(max_length=8, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=30, blank=True)
@@ -40,6 +49,7 @@ class Patient(models.Model):
     phone_number = models.IntegerField(null=True)
     email = models.EmailField(blank=True, null=True)
     injury = models.CharField(max_length=30, blank=True)
+    cause = models.ForeignKey(Cause, on_delete=models.CASCADE, null=True)
     INJURY_TYPES = (
     ('green','SAFE'),
     ('yellow','MINIMAL INJURY'),
